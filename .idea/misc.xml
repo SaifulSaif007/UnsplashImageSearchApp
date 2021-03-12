@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/KotlinProjects/UnsplashImageSearchApp/app/src/main/res/layout/fragment_gallery.xml" value="0.36666666666666664" />
+        <entry key="..\:/KotlinProjects/UnsplashImageSearchApp/app/src/main/res/layout/item_unsplash_photo.xml" value="0.25" />
       </map>
     </option>
   </component>
