@@ -1,6 +1,6 @@
 package com.saiful.unsplashimagesearchapp.di
 
-import com.saiful.unsplashimagesearchapp.api.UnsplashApi
+import com.saiful.unsplashimagesearchapp.data.api.UnsplashApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

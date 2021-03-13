@@ -1,4 +1,4 @@
-package com.saiful.unsplashimagesearchapp.api
+package com.saiful.unsplashimagesearchapp.data.api
 
 import com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto
 

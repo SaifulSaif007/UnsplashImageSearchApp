@@ -3,7 +3,7 @@ package com.saiful.unsplashimagesearchapp.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.saiful.unsplashimagesearchapp.api.UnsplashApi
+import com.saiful.unsplashimagesearchapp.data.api.UnsplashApi
 import com.saiful.unsplashimagesearchapp.data.paging.UnsplashPagingSource
 import javax.inject.Inject
 import javax.inject.Singleton

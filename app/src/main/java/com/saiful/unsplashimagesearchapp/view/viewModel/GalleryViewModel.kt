@@ -32,7 +32,7 @@ class GalleryViewModel
 
 
     companion object {
-        private const val DEFAULT_QUERY = "cats"
+        private const val DEFAULT_QUERY = "random"
     }
 
 }

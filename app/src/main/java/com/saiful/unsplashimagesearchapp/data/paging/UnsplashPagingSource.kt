@@ -1,7 +1,7 @@
 package com.saiful.unsplashimagesearchapp.data.paging
 
 import androidx.paging.PagingSource
-import com.saiful.unsplashimagesearchapp.api.UnsplashApi
+import com.saiful.unsplashimagesearchapp.data.api.UnsplashApi
 import com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto
 import retrofit2.HttpException
 

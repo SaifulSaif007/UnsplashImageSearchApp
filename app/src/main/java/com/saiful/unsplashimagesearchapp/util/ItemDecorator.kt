@@ -1,4 +1,4 @@
-package com.saiful.moviestvseries.util
+package com.saiful.unsplashimagesearchapp.util
 
 import android.graphics.Rect
 import android.view.View
@@ -12,8 +12,8 @@ class ItemDecorator : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.top = 10
-        outRect.right = 5
-        outRect.left = 5
+        outRect.top = 8
+        outRect.right = 3
+        outRect.left = 3
     }
 }
