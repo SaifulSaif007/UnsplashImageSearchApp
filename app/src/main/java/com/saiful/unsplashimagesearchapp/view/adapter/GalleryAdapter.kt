@@ -11,6 +11,9 @@ import com.saiful.unsplashimagesearchapp.R
 import com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto
 import com.saiful.unsplashimagesearchapp.databinding.ItemUnsplashPhotoBinding
 
+const val PHOTOS_ITEM = 1
+const val HEADER_FOOTER_ITEM = 2
+
 
 class GalleryAdapter :
     PagingDataAdapter<UnsplashPhoto, GalleryAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
@@ -31,8 +34,7 @@ class GalleryAdapter :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == itemCount) 2
-        else 1
+       return if (position == itemCount)  HEADER_FOOTER_ITEM else PHOTOS_ITEM
     }
 
     class PhotoViewHolder(private val binding: ItemUnsplashPhotoBinding) :
