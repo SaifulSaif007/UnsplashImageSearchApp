@@ -1,6 +1,7 @@
 package com.saiful.unsplashimagesearchapp.view.ui.gallery
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -58,6 +59,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
         viewModel.photos.observe(viewLifecycleOwner) { data ->
             adapter.submitData(viewLifecycleOwner.lifecycle, data)
+        }
+
+        viewModel.readDarkModeStatus.observe(viewLifecycleOwner){
+            Log.d("dark mode", it.toString())
         }
     }
 

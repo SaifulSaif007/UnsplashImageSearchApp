@@ -1,5 +1,7 @@
 package com.saiful.unsplashimagesearchapp.di
 
+import android.app.Application
+import android.content.Context
 import com.saiful.unsplashimagesearchapp.data.api.UnsplashApi
 import dagger.Module
 import dagger.Provides
@@ -27,5 +29,10 @@ object AppModule  {
     @Singleton
     fun provideUnsplashApi(retrofit: Retrofit) : UnsplashApi =
         retrofit.create(UnsplashApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideContext(application: Application) : Context = application.applicationContext
 
 }

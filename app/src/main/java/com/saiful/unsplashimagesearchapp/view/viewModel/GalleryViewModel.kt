@@ -3,6 +3,7 @@ package com.saiful.unsplashimagesearchapp.view.viewModel
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
+import com.saiful.unsplashimagesearchapp.data.repository.DataStoreRepository
 import com.saiful.unsplashimagesearchapp.data.repository.UnsplashRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,7 +17,10 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class GalleryViewModel
-@Inject constructor(private val repository: UnsplashRepository) : ViewModel() {
+@Inject constructor(
+    private val repository: UnsplashRepository,
+    private val dataStoreRepository: DataStoreRepository
+    ) : ViewModel() {
 
     private val currentQuery = MutableLiveData(DEFAULT_QUERY)
 
@@ -29,6 +33,7 @@ class GalleryViewModel
     }
 
 
+    val readDarkModeStatus = dataStoreRepository.readDarkModeStatus.asLiveData()
 
 
     companion object {
