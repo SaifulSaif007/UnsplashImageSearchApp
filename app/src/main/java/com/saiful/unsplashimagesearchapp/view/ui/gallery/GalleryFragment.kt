@@ -6,20 +6,20 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.saiful.unsplashimagesearchapp.util.ItemDecorator
 import com.saiful.unsplashimagesearchapp.R
 import com.saiful.unsplashimagesearchapp.databinding.FragmentGalleryBinding
 import com.saiful.unsplashimagesearchapp.util.DarkModeToggle.toggleDarkMode
-
+import com.saiful.unsplashimagesearchapp.util.ItemDecorator
 import com.saiful.unsplashimagesearchapp.view.adapter.GalleryAdapter
 import com.saiful.unsplashimagesearchapp.view.adapter.PhotoLoadStateAdapter
-import com.saiful.unsplashimagesearchapp.view.ui.MainActivity
 import com.saiful.unsplashimagesearchapp.view.viewModel.GalleryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlin.properties.Delegates
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -29,6 +29,9 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
+
+    private var darkModeStatus by Delegates.notNull<Boolean>()
+    private lateinit var menuItem: Menu
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,8 +64,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             adapter.submitData(viewLifecycleOwner.lifecycle, data)
         }
 
-        viewModel.readDarkModeStatus.observe(viewLifecycleOwner){
+        viewModel.readDarkModeStatus.observe(viewLifecycleOwner) {
             Log.d("dark mode", it.toString())
+            darkModeStatus = it
+            toggleDarkMode(darkModeStatus)
         }
     }
 
@@ -70,13 +75,15 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
+        this.menuItem = menu
         inflater.inflate(R.menu.gallery_menu, menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.dark_mode -> {
-                toggleDarkMode()
+                viewModel.saveDarkModeStatus(status = !darkModeStatus)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMap
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.switchMap
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -34,6 +35,10 @@ class GalleryViewModel
 
 
     val readDarkModeStatus = dataStoreRepository.readDarkModeStatus.asLiveData()
+
+     fun saveDarkModeStatus(status:Boolean) = viewModelScope.launch {
+        dataStoreRepository.saveDarkMode(status = status)
+    }
 
 
     companion object {

@@ -16,7 +16,7 @@ import javax.inject.Singleton
 const val PREFERENCE_NAME = "settings"
 
 @Singleton
-class DataStoreRepository @Inject constructor(context: Context) {
+class DataStoreRepository @Inject constructor(private val context: Context) {
 
     private object PreferenceKeys {
 
@@ -28,7 +28,7 @@ class DataStoreRepository @Inject constructor(context: Context) {
         name = PREFERENCE_NAME
     )
 
-    suspend fun saveDarkMode(status: Boolean, context: Context){
+    suspend fun saveDarkMode(status: Boolean){
         context.dataStore.edit { settings ->
             settings[darkModeStatus] = status
         }

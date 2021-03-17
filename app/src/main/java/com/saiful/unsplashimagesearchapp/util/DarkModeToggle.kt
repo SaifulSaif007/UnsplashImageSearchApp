@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatDelegate
 
 object DarkModeToggle {
 
-    fun toggleDarkMode(){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    fun toggleDarkMode(status: Boolean) {
+        if (status) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
