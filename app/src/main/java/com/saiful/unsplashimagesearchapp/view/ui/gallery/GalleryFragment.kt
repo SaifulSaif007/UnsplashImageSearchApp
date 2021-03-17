@@ -1,12 +1,13 @@
 package com.saiful.unsplashimagesearchapp.view.ui.gallery
 
+import android.app.SearchableInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,7 +32,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     private val binding get() = _binding!!
 
     private var darkModeStatus by Delegates.notNull<Boolean>()
-    private lateinit var menuItem: Menu
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,9 +75,27 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        this.menuItem = menu
         inflater.inflate(R.menu.gallery_menu, menu)
 
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                if (query != null){
+                    viewModel.searchPhotos(query)
+                    binding.recyclerView.scrollToPosition(0)
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -86,6 +104,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
                 viewModel.saveDarkModeStatus(status = !darkModeStatus)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
 
