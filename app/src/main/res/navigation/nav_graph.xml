@@ -17,5 +17,9 @@
         android:id="@+id/detailsFragment"
         android:name="com.saiful.unsplashimagesearchapp.view.ui.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="photo"
+            app:argType="com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto" />
+    </fragment>
 </navigation>

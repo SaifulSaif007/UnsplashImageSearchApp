@@ -17,3 +17,4 @@ class ItemDecorator : RecyclerView.ItemDecoration() {
         outRect.left = 3
     }
 }
+

@@ -11,9 +11,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.saiful.unsplashimagesearchapp.R
+import com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto
 import com.saiful.unsplashimagesearchapp.databinding.FragmentGalleryBinding
 import com.saiful.unsplashimagesearchapp.util.DarkModeToggle.toggleDarkMode
 import com.saiful.unsplashimagesearchapp.util.ItemDecorator
@@ -26,7 +28,7 @@ import kotlin.properties.Delegates
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery) {
+class GalleryFragment : Fragment(R.layout.fragment_gallery), GalleryAdapter.OnItemClickListener {
 
     private val viewModel: GalleryViewModel by viewModels()
 
@@ -42,7 +44,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
         setHasOptionsMenu(true)
 
-        val adapter = GalleryAdapter()
+        val adapter = GalleryAdapter(this)
 
         val gridLayoutManager = GridLayoutManager(activity, 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -101,6 +103,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
     }
 
+    override fun onItemClick(photo: UnsplashPhoto) {
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment(photo)
+        findNavController().navigate(action)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -144,4 +151,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

@@ -10,12 +10,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.saiful.unsplashimagesearchapp.R
 import com.saiful.unsplashimagesearchapp.data.model.UnsplashPhoto
 import com.saiful.unsplashimagesearchapp.databinding.ItemUnsplashPhotoBinding
+import com.saiful.unsplashimagesearchapp.util.HEADER_FOOTER_ITEM
+import com.saiful.unsplashimagesearchapp.util.PHOTOS_ITEM
 
-const val PHOTOS_ITEM = 1
-const val HEADER_FOOTER_ITEM = 2
 
-
-class GalleryAdapter :
+class GalleryAdapter(private val listener : OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, GalleryAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
 
 
@@ -37,8 +36,20 @@ class GalleryAdapter :
        return if (position == itemCount)  HEADER_FOOTER_ITEM else PHOTOS_ITEM
     }
 
-    class PhotoViewHolder(private val binding: ItemUnsplashPhotoBinding) :
+    inner class PhotoViewHolder(private val binding: ItemUnsplashPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    val item = getItem(position)
+                    if (item != null){
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
 
         fun bind(photo: UnsplashPhoto) {
             binding.apply {
@@ -50,6 +61,10 @@ class GalleryAdapter :
 
             }
         }
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(photo: UnsplashPhoto)
     }
 
 
