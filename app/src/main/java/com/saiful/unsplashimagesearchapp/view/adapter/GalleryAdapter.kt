@@ -54,10 +54,12 @@ class GalleryAdapter(private val listener : OnItemClickListener) :
         fun bind(photo: UnsplashPhoto) {
             binding.apply {
                 Glide.with(itemView)
-                    .load(photo.urls.regular)
+                    .load(photo.urls.small)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_baseline_error_outline_24)
                     .into(unsplashPhoto)
+
+                userName.text = photo.user.name
 
             }
         }
