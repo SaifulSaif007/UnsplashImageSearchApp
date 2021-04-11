@@ -51,6 +51,7 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
                     ): Boolean {
                         progress_bar_details.isVisible = false
                         description.isVisible = photo.description != null
+                        altDesc.isVisible = photo.alt_description != null
                         return false
                     }
 

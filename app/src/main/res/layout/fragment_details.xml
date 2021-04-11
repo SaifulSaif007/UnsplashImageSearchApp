@@ -40,9 +40,20 @@
             tools:visibility="visible"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:textSize="16dp"
+            android:textSize="16sp"
             />
 
+            <TextView
+                android:id="@+id/alt_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="alternative description here"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
+                android:textSize="16sp"
+                />
 
         </LinearLayout>
 
