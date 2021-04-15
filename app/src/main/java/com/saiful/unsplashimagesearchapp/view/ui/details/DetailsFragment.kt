@@ -59,6 +59,7 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
                 .into(image)
 
             description.text = photo.description
+            altDesc.text = photo.alt_description
 
         }
     }
