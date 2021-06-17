@@ -13,8 +13,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.saiful.unsplashimagesearchapp.R
 import com.saiful.unsplashimagesearchapp.databinding.FragmentDetailsBinding
-import kotlinx.android.synthetic.main.fragment_details.*
-import kotlinx.android.synthetic.main.fragment_gallery.*
 
 class DetailsFragment  : Fragment(R.layout.fragment_details) {
 
@@ -38,7 +36,7 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        progress_bar_details.isVisible = false
+                        binding.progressBarDetails.isVisible = false
                         return false
                     }
 
@@ -49,7 +47,7 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        progress_bar_details.isVisible = false
+                        binding.progressBarDetails.isVisible = false
                         description.isVisible = photo.description != null
                         altDesc.isVisible = photo.alt_description != null
                         return false
