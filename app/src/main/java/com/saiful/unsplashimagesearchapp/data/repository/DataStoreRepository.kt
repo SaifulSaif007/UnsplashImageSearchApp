@@ -12,31 +12,26 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 const val PREFERENCE_NAME = "settings"
 
 @Singleton
 class DataStoreRepository @Inject constructor(private val context: Context) {
 
     private object PreferenceKeys {
-
         val darkModeStatus = booleanPreferencesKey("darkMode")
-
     }
 
-    private val Context.dataStore : DataStore<Preferences> by preferencesDataStore(
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
         name = PREFERENCE_NAME
     )
 
-    suspend fun saveDarkMode(status: Boolean){
+    suspend fun saveDarkMode(status: Boolean) {
         context.dataStore.edit { settings ->
             settings[darkModeStatus] = status
         }
     }
 
-    val readDarkModeStatus :  Flow<Boolean> = context.dataStore.data.map { settings->
+    val readDarkModeStatus: Flow<Boolean> = context.dataStore.data.map { settings ->
         settings[darkModeStatus] ?: false
     }
-
-
 }

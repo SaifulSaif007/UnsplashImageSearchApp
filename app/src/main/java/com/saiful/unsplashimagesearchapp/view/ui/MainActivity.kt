@@ -12,7 +12,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.saiful.unsplashimagesearchapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

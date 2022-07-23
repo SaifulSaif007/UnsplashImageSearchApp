@@ -1,8 +1,6 @@
 package com.saiful.unsplashimagesearchapp.view.ui.gallery
 
-import android.app.SearchableInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -151,6 +149,5 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), GalleryAdapter.OnIt
         super.onDestroyView()
         _binding = null
     }
-
 
 }
