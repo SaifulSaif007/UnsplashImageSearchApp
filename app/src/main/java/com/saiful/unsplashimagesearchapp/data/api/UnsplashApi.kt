@@ -1,6 +1,6 @@
 package com.saiful.unsplashimagesearchapp.data.api
 
-import com.saiful.unsplashimagesearchapp.BuildConfig
+
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -9,8 +9,7 @@ interface UnsplashApi {
 
     companion object{
         const val BASE_URL = "https://api.unsplash.com/"
-        const val CLIENT_ID = BuildConfig.UNSPLASH_ACCESS_KEY
-
+        const val CLIENT_ID = "210rEZdu_UXkCL-ntrKQ9Ya0xsluAbLZAZSR0Y8TkJs"
     }
 
     @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
