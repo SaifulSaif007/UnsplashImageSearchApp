@@ -31,21 +31,25 @@ import com.bumptech.glide.request.target.Target
 import com.saiful.unsplashimagesearchapp.R
 import com.saiful.unsplashimagesearchapp.databinding.FragmentDetailsBinding
 
-class DetailsFragment  : Fragment(R.layout.fragment_details) {
+class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val args by navArgs<DetailsFragmentArgs>()
 
-    private val requiredPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions->
-        val isGranted = permissions.entries.all {
-            it.value == true
+    private val requiredPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val isGranted = permissions.entries.all {
+                it.value == true
+            }
+            if (isGranted) {
+                downloadImage()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Permission needed for download",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
-        if (isGranted){
-            downloadImage()
-        }
-        else {
-            Toast.makeText(requireContext(), "Permission needed for download", Toast.LENGTH_LONG).show()
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,14 +98,17 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
     }
 
 
-    private fun requestPermission(){
+    private fun requestPermission() {
         val permissionRequest = arrayListOf<String>()
         val minSDK = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-        val isPermissionGranted = (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) || minSDK
-        if (!isPermissionGranted){
+        val isPermissionGranted = (ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED) || minSDK
+        if (!isPermissionGranted) {
             permissionRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
-        if (permissionRequest.isNotEmpty()){
+        if (permissionRequest.isNotEmpty()) {
             askForPermission(permissionRequest)
         } else {
             downloadImage()
@@ -112,14 +119,20 @@ class DetailsFragment  : Fragment(R.layout.fragment_details) {
         requiredPermission.launch(request.toTypedArray())
     }
 
-    private fun downloadImage(){
-        val downloadManager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    private fun downloadImage() {
+        val downloadManager =
+            requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val uri = args.photo.urls.regular
+        val fileName = args.photo.description ?: args.photo.alt_description
         val request = DownloadManager.Request(Uri.parse(uri))
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
         request.setDescription(args.photo.description)
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "unsplash")
+        request.setTitle(fileName)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalPublicDir(
+            Environment.DIRECTORY_DOWNLOADS,
+            "$fileName.jpg"
+        )
         downloadManager.enqueue(request)
     }
 
