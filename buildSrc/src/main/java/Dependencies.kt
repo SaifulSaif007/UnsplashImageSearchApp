@@ -25,8 +25,11 @@ object Dependencies {
     val paging by lazy { "androidx.paging:paging-runtime-ktx:${Versions.paging}" }
     val dataStore by lazy { "androidx.datastore:datastore-preferences:${Versions.dataStore}" }
 
+    val leakCanary by lazy { "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}" }
+
     val testJunit by lazy { "junit:junit:${Versions.testJunit}" }
     val androidTestJunit by lazy { "androidx.test.ext:junit:${Versions.androidTestJunit}" }
     val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.espressoCore}" }
+
 
 }

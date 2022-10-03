@@ -31,8 +31,16 @@ fun DependencyHandler.mixed() {
     implementation(Dependencies.dataStore)
 }
 
+fun DependencyHandler.leakCanary() {
+    dedugImplementation(Dependencies.leakCanary)
+}
+
 fun DependencyHandler.implementation(depName: String) {
     add("implementation", depName)
+}
+
+fun DependencyHandler.dedugImplementation(depName: String) {
+    add("debugImplementation", depName)
 }
 
 private fun DependencyHandler.kapt(depName: String) {

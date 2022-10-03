@@ -8,22 +8,25 @@ plugins {
 }
 
 android {
-    compileSdk  = ConfigData.compileSdkVersion
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
         applicationId = ConfigData.appId
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdk
         versionCode = ConfigData.versionCode
-        versionName  = ConfigData.versionName
+        versionName = ConfigData.versionName
 
-        testInstrumentationRunner =  "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -53,9 +56,12 @@ dependencies {
 
     mixed()
 
+    leakCanary()
+
     testImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.androidTestJunit)
     androidTestImplementation(Dependencies.espressoCore)
+
 
 }
 kapt {

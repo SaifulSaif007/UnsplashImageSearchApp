@@ -20,4 +20,6 @@ object Versions {
 
     const val appCompat = "1.3.0"
     const val constraintLayout = "2.0.4"
+
+    const val leakCanary = "2.9.1"
 }
