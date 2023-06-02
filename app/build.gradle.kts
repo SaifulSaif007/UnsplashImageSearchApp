@@ -8,6 +8,8 @@ plugins {
 }
 
 android {
+    namespace  = "com.saiful.unsplashimagesearchapp"
+
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {

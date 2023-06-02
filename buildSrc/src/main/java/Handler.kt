@@ -16,8 +16,6 @@ fun DependencyHandler.retrofit() {
 fun DependencyHandler.hilt() {
     implementation(Dependencies.hilt)
     kapt(Dependencies.hiltAnnotation)
-    implementation(Dependencies.hiltViewModel)
-    kapt(Dependencies.hiltViewModelAnnotation)
 }
 
 fun DependencyHandler.navigation() {

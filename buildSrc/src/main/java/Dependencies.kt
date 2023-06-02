@@ -16,9 +16,7 @@ object Dependencies {
     val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofit}" }
     val gson by lazy { "com.squareup.retrofit2:converter-gson:${Versions.retrofit}" }
     val hilt by lazy { "com.google.dagger:hilt-android:${Versions.hilt}" }
-    val hiltAnnotation by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hilt}" }
-    val hiltViewModel by lazy { "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltViewModel}" }
-    val hiltViewModelAnnotation by lazy { "androidx.hilt:hilt-compiler:${Versions.hiltViewModel}" }
+    val hiltAnnotation by lazy { "com.google.dagger:hilt-compiler:${Versions.hilt}" }
     val navigationFragment by lazy { "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}" }
     val navigationUi by lazy { "androidx.navigation:navigation-ui-ktx:${Versions.navigation}" }
     val glide by lazy { "com.github.bumptech.glide:glide:${Versions.glide}" }
@@ -30,6 +28,5 @@ object Dependencies {
     val testJunit by lazy { "junit:junit:${Versions.testJunit}" }
     val androidTestJunit by lazy { "androidx.test.ext:junit:${Versions.androidTestJunit}" }
     val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.espressoCore}" }
-
 
 }
