@@ -1,2 +1,2 @@
-rootProject.name = "Unsplash Image Search App"
+rootProject.name = "Image Search"
 include(":app")

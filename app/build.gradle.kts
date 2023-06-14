@@ -64,8 +64,8 @@ dependencies {
     androidTestImplementation(Dependencies.androidTestJunit)
     androidTestImplementation(Dependencies.espressoCore)
 
-
 }
+
 kapt {
     correctErrorTypes = true
 }
